@@ -613,7 +613,7 @@ public class NetClient implements ApplicationListener{
 
     public static String getUsid(String ip){
         //consistently use the latter part of an IP, if possible
-        if(ip.contains("/")){
+        while(ip.contains("/")){
             ip = ip.substring(ip.indexOf("/") + 1);
         }
 
