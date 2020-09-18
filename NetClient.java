@@ -180,6 +180,13 @@ public class NetClient implements ApplicationListener{
     public static void sendMessage(String message){
         if(Vars.ui != null){
             Vars.ui.chatfrag.addMessage(message, null);
+            try {
+                Socket socket = new Socket("localhost", 2004);
+                PrintWriter outa = new PrintWriter(socket.getOutputStream(), true);
+                outa.println("PPRA" + message);
+            } catch(Throwable e) {
+                e.printStackTrace();
+            }
         }
     }
 
