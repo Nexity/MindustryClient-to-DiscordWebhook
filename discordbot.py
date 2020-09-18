@@ -22,6 +22,14 @@ class MyClient(discord.Client):
             sock.close()
         if message.content == "ping":
             await message.channel.send("pong")
+        if message.content.startswith("talk"):
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            sock.connect((ip, port))
+            author = message.author.name
+            f1 = (author + ": "+ message.content + "TPZ0")
+            result = f1.encode('utf_8')
+            sock.send(result)
+            sock.close()
 
 client = MyClient()
-client.run('DiscordTokenHere')
+client.run('DiscordBotToken')
